@@ -12,7 +12,6 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.springboot.model.CovidDataModel;
@@ -25,7 +24,7 @@ public class CovidService {
 	public int totalTodayCount = 0, totalNewCount = 0;
 
 	@PostConstruct
-	@Scheduled(cron = "* * * * * *")
+//	@Scheduled(cron = "* * * * * *")
 	public void getData() throws IOException, InterruptedException {
 		ArrayList<CovidDataModel> dataList = new ArrayList<>();
 		int currentCount, newCount;

@@ -1,24 +1,25 @@
 package com.springboot.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.springboot.model.CovidDataModel;
 import com.springboot.service.CovidService;
 
-@Controller
+@RestController
 public class CovidController {
 
 	@Autowired
 	CovidService service;
 
-	@RequestMapping("/")
-	public String show(Model model) {
-		model.addAttribute("allData", service.allDataList);
-		model.addAttribute("totalTodayCount", service.totalTodayCount);
-		model.addAttribute("totalNewCount", service.totalNewCount);
-		return "home";
+	@CrossOrigin(origins = "http://localhost:4200")
+	@RequestMapping("/show")
+	public List<CovidDataModel> show() {
+		return service.allDataList;
 	}
 
 }
